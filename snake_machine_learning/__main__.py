@@ -67,7 +67,7 @@ def main():
 
         agent.replay_new(agent.memory)
         counter_games += 1
-        print("Game", counter_games, "      Score:", game.score)
+        print("Count", counter_games, "      Score:", game.score)
         if counter_games % 10 == 0:
             file_dump.FileDump().save_network(agent)
             print("Network saved.")

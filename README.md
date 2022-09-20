@@ -1,6 +1,8 @@
 <div align="center">
   <h1>Snake Machine Learning</h1>
+  <!--
   <img src="snake.gif" width="100%" alt="snake.gif">
+  -->
 </div>
 
 ### Introduction 

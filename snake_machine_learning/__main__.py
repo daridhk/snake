@@ -9,7 +9,7 @@ from snake_machine_learning.game.game_classes import Game
 from snake_machine_learning.game.game_config import game_config
 from snake_machine_learning.ml.DQN import DQNAgent
 
-import file_dump
+from file_dump import FileDump
 
 def main():
     """Main method to start the game and the learning process"""
@@ -17,7 +17,7 @@ def main():
     # Initialize Pygame and create a new agent.
     pygame.init()
     # agent = DQNAgent()
-    agent = file_dump.FileDump().load_network()
+    agent = FileDump().load_network()
     if agent is None:
         agent = DQNAgent()
 
@@ -33,10 +33,12 @@ def main():
         # Perform first move
         initialize_game(snake1, game, apple1, agent)
         # todo, display(snake1, apple1, game, record)
+        display(snake1, apple1, game, record)
 
         while not game.crash:
             # Agent.epsilon is set to give randomness to actions
-            agent.epsilon = 80 - counter_games
+            # agent.epsilon = 80 - counter_games
+            agent.epsilon = (150 - counter_games)*200/150/30
 
             # Get old state
             state_old = agent.get_state(game, snake1, apple1)
@@ -63,13 +65,14 @@ def main():
             agent.remember(state_old, final_move, reward, state_new, game.crash)
             record = get_record(game.score, record)
             # todo, display(snake1, apple1, game, record)
+            display(snake1, apple1, game, record)
             pygame.time.wait(game_config["speed"])
 
         agent.replay_new(agent.memory)
         counter_games += 1
         print("Count", counter_games, "      Score:", game.score)
         if counter_games % 10 == 0:
-            file_dump.FileDump().save_network(agent)
+            FileDump().save_network(agent)
             print("Network saved.")
 
 

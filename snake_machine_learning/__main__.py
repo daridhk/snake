@@ -87,6 +87,18 @@ ml_config.py 에서  "rewards": {"negative": -10, "positive": 10}, negative -10,
 그래서 file_dump.py를 만들어 state를 저장하게 했다. network.bin 이 100MB 가 넘어가고 있다. 왜 학습할 수록 더 커질까? 커질 이유가 없지 않나? 
 garbage collection 되어야 할 것도 함께 저장되는 것 아닐까?   
 
-positive를 20으로 늘리니 하 
+positive를 20으로 늘리니 하니 먹이를 찾는 것 같다. 그러나 최대 score가 50 정도이다.
+
+OpenAI Gym 을 사용 해 보자.
+reinforcement learning q-learning
+ https://www.youtube.com/watch?v=Fbf9YUyDFww&list=PLlMkM4tgfjnKsCWav-Z2F-MMFRx-2gMGG&index=15
+ https://mclearninglab.tistory.com/49 링크 모음
+- OpenAI Gym
+    https://github.com/openai/gym
+- OpenAI Gym snake
+  https://github.com/grantsrb/Gym-Snake
+  https://pypi.org/project/snake-gym/
+  https://github.com/vivek3141/snake-ai
+  https://github.com/yosinlpet/gym_snake
 
 '''

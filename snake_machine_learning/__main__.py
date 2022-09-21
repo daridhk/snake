@@ -24,7 +24,7 @@ def main():
     counter_games = 0
     record = 0
 
-    while counter_games < 150:
+    while counter_games < 1500:
         # Initialize classes
         game = Game()
         snake1 = game.snake
@@ -33,7 +33,7 @@ def main():
         # Perform first move
         initialize_game(snake1, game, apple1, agent)
         # todo, display(snake1, apple1, game, record)
-        display(snake1, apple1, game, record)
+        # display(snake1, apple1, game, record)
 
         while not game.crash:
             # Agent.epsilon is set to give randomness to actions
@@ -65,12 +65,12 @@ def main():
             agent.remember(state_old, final_move, reward, state_new, game.crash)
             record = get_record(game.score, record)
             # todo, display(snake1, apple1, game, record)
-            display(snake1, apple1, game, record)
+            # display(snake1, apple1, game, record)
             pygame.time.wait(game_config["speed"])
 
         agent.replay_new(agent.memory)
         counter_games += 1
-        print("Count", counter_games, "      Score:", game.score)
+        print("Count", counter_games, "      Score:", game.score, "      Record:", record)
         if counter_games % 10 == 0:
             FileDump().save_network(agent)
             print("Network saved.")
@@ -78,3 +78,15 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+'''
+ml_config.py 에서  "rewards": {"negative": -10, "positive": 10}, negative -10, positive 10 으로 하면 생존에만 신경 쓰는 것 같다.
+이 상태에서 학습 회수를 1000, 10000으로 늘려서 계속 학습만 하면 high score 50까지 찍고 그 후는 생존하려고 뱅뱅이만 돈다. 그래서 score가 1, 2 로만 나온다.
+
+일단 한번 실행하고 끝내면 처음부터 다시 실행 해야 한다. network이 초기화 되기 때문이다.
+그래서 file_dump.py를 만들어 state를 저장하게 했다. network.bin 이 100MB 가 넘어가고 있다. 왜 학습할 수록 더 커질까? 커질 이유가 없지 않나? 
+garbage collection 되어야 할 것도 함께 저장되는 것 아닐까?   
+
+positive를 20으로 늘리니 하 
+
+'''

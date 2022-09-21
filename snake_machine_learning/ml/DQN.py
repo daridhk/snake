@@ -202,6 +202,8 @@ class DQNAgent(object):
 
     def remember(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
+        # delete old memories, otherwise the memory size become too big
+        del self.memory[:-100000]
 
     def replay_new(self, memory):
         """Creating new agent for next game

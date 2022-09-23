@@ -10,5 +10,6 @@ class FileDump:
             with open('network.bin', 'rb') as inp:
                 network = pickle.load(inp)
                 return network
-        except:
+        except Exception as e:
+            print(e)
             return None

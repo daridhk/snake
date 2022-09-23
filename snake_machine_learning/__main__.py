@@ -101,4 +101,9 @@ reinforcement learning q-learning
   https://github.com/vivek3141/snake-ai
   https://github.com/yosinlpet/gym_snake
 
+nature 논문
+https://www.nature.com/articles/nature14236
+
+State를 어떻게 정하나?
+https://towardsdatascience.com/snake-played-by-a-deep-reinforcement-learning-agent-53f2c4331d36
 '''

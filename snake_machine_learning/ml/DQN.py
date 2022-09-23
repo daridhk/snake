@@ -1,4 +1,5 @@
 import random
+from collections import deque
 from operator import add
 
 import numpy as np
@@ -22,7 +23,8 @@ class DQNAgent(object):
         self.model = self.network()
         self.epsilon = ml_config["epsilon"]
         self.actual = []
-        self.memory = []
+        # self.memory = []
+        self.memory = deque()
 
     def get_state(self, game, snake, apple):
         """Create all the input features for the Agent. Current state of the game.
@@ -188,10 +190,10 @@ class DQNAgent(object):
         model = Sequential()
         model.add(Dense(output_dim=120, activation="relu", input_dim=11))
         model.add(Dropout(0.15))
-        model.add(Dense(output_dim=120, activation="relu"))
-        model.add(Dropout(0.15))
-        model.add(Dense(output_dim=120, activation="relu"))
-        model.add(Dropout(0.15))
+        # model.add(Dense(output_dim=120, activation="relu"))
+        # model.add(Dropout(0.15))
+        # model.add(Dense(output_dim=120, activation="relu"))
+        # model.add(Dropout(0.15))
         model.add(Dense(output_dim=3, activation="softmax"))
         opt = Adam(self.learning_rate)
         model.compile(loss="mse", optimizer=opt)
@@ -203,7 +205,8 @@ class DQNAgent(object):
     def remember(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
         # delete old memories, otherwise the memory size become too big
-        del self.memory[:-100000]
+        if len(self.memory) > 10000:
+            self.memory.popleft()
 
     def replay_new(self, memory):
         """Creating new agent for next game

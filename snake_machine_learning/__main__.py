@@ -106,4 +106,14 @@ https://www.nature.com/articles/nature14236
 
 State를 어떻게 정하나?
 https://towardsdatascience.com/snake-played-by-a-deep-reinforcement-learning-agent-53f2c4331d36
+
+snake DQN 설명이 잘되어 있음.
+이 코드와 가장 비슷함
+https://www.geeksforgeeks.org/ai-driven-snake-game-using-deep-q-learning/
+
+다른 코드 설명
+https://icapps.com/blog/reinforcement-learning
+
+snake 논문
+https://www.researchgate.net/figure/Neural-network-architecture-for-a-snake-game_fig3_334998694
 '''
